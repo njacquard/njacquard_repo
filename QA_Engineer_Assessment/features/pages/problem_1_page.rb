@@ -40,7 +40,7 @@ label(:lbl_total, id:"lbl_ttl_val")
       @browser.goto 'https://www.exercise1.com/values'
   end
 
-  def get_all_fields_values (current_array)
+  def get_all_field_values (current_array)
       current_array.each do |element|
       #assign each element's value to a new array
       @values = element.value

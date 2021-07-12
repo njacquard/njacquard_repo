@@ -44,7 +44,7 @@ end
 
 When('each value of a field is added together') do
     # call helper method to populate an array with all values
-    @total_sum_of_values = problem1.get_all_fields_values
+    @total_sum_of_values = problem1.get_all_field_values
     # assign the total of values to the sum of the array to be used for assertion
     @total_sum_of_values.sum
 end
@@ -62,7 +62,7 @@ end
 
 When('each value of a field is evaluated for number format') do
   # call helper method to populate an array with all values
-  @all_field_values = problem1.get_all_fields_values
+  @all_field_values = problem1.get_all_field_values
 end
 
 Then('the values should be in a valid currency') do
@@ -79,7 +79,7 @@ end
 
 When('each value of a field is added together') do
   # call helper method to populate an array with all values
-  @total_sum = problem1.get_all_fields_values
+  @total_sum = problem1.get_all_field_values
   # assign the total of values to the sum of the array to be used for assertion
   @total_sum.sum
 end
