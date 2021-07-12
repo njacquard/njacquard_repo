@@ -30,6 +30,7 @@ When('a value is evaluated on the screen') do
 end
 
 Then('the value is greater than 0') do
+  # iterate through mapped array created above and compare each element to be greater than 0
   @values_array.each do |element_value|
     expect(element_value).to be > 0
   end
@@ -44,13 +45,13 @@ end
 
 When('each value of a field is added together') do
     # call helper method to populate an array with all values
-    @total_sum_of_values = problem1.get_all_field_values
+    @total_sum_of_values = @problem1.get_all_field_values(@problem1.all_fields)
     # assign the total of values to the sum of the array to be used for assertion
     @total_sum_of_values.sum
 end
 
 Then('the total should equal 1,000,000.00') do
-  # this is similar to another objective, wasn't sure if to harcode value in or not
+  # this is similar to another objective, wasn't sure if to harcode total balance value or not
   expect(@total_sum_of_values).to eq(1000000.00)
 end
 
@@ -62,13 +63,12 @@ end
 
 When('each value of a field is evaluated for number format') do
   # call helper method to populate an array with all values
-  @all_field_values = problem1.get_all_field_values
+  @all_field_values = @problem1.get_all_field_values(@problem1.all_fields)
 end
 
 Then('the values should be in a valid currency') do
-  # unsure how to implement this fully in ruby, see page file for validate statement
-  # won't compile without commenting out method
-  @all_values.valid?
+  # !! unsure how to implement this fully in ruby, see line 51 of page file for validate statement
+  @all_field_values.valid?
 end
 
 # Objective 5
@@ -79,12 +79,12 @@ end
 
 When('each value of a field is added together') do
   # call helper method to populate an array with all values
-  @total_sum = problem1.get_all_field_values
+  @total_sum = @problem1.get_all_field_values(@problem1.all_fields)
   # assign the total of values to the sum of the array to be used for assertion
   @total_sum.sum
 end
 
 Then('the total amount of the values should equal the value of the total balance field') do
   # compare sum of values against the class variable created in page file
-  expect(@total_sum).to eq(@problem1.txt_field_total)
+  expect(@total_sum).to eq(@problem1.txt_field_total.value)
 end

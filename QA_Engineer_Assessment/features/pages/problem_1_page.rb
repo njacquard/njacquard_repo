@@ -2,7 +2,7 @@ class Problem_1_Page
   include PageObject
 
 # labels
-#label(name, selector (id))
+# label(name, selector (id))
 label(:lbl_1, id:"lbl_val_1")
 label(:lbl_2, id:"lbl_val_2")
 label(:lbl_3, id:"lbl_val_3")
@@ -11,8 +11,8 @@ label(:lbl_5, id:"lbl_val_5")
 label(:lbl_total, id:"lbl_ttl_val")
 
 # text fields
-#text_field(name, selector (id))
-# not sure if I need to declar instance variables of each?
+# text_field(name, selector (id))
+# not sure if I need to declare instance variables of each?
 @txt_field_1 = text_field(:txt_field_1, id: "txt_val_1")
 @txt_field_2 = text_field(:txt_field_2, id: "txt_val_2")
 @txt_field_3 = text_field(:txt_field_3, id: "txt_val_4")
@@ -29,17 +29,20 @@ label(:lbl_total, id:"lbl_ttl_val")
 
 # create Class variable of txt_field_total
 @@txt_field_total = @txt_field_total
-  def self.variables
+  def self.variable
     @@txt_field_total
   end
 
 #attr_accessor :total_text_fields
 
 # Utilities
+
+  # helper method for visiting the test site (best practice to put that in env.rb?)
   def visit_test_site
       @browser.goto 'https://www.exercise1.com/values'
   end
 
+  # helper method to return values of all text fields
   def get_all_field_values (current_array)
       current_array.each do |element|
       #assign each element's value to a new array
@@ -48,10 +51,11 @@ label(:lbl_total, id:"lbl_ttl_val")
     return @values
   end
 
-  # validation for currency on all fields array, using rails
+  # !! validation for currency on all fields array, using rails
   # unsure how to implement this fully
+  # won't compile without commenting out method
   #validates :all_fields, numericality: true,
-  #        # use format with regex expression
-  #        :format => { :with => /^\d{1,6}(\.\d{0,2})?$/}
+  #        # use format option with regex expression
+  #        :format => {:with => /^\d{1,6}(\.\d{0,2})?$/}
 
 end
